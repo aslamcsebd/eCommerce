@@ -4,8 +4,6 @@
       <meta charset="ISO-8859-1">
       <title>Favorite Songs</title>
       {{-- <meta http-equiv="refresh" content="3" /> --}}
-      {{-- https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/core.js --}}
-
       <script src="{{ asset('Full_Project/js/jquery.min.js')}}"></script>
       <script src="{{ asset('Full_Project/js/isotope.pkgd.min.js')}}"></script>
       <link rel="stylesheet" href="{{ asset('Full_Project/css/bootstrap.min.css') }}">
