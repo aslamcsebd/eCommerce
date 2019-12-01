@@ -27,6 +27,7 @@
                        <thead>
                          <tr>
                            <th>SL. No</th>
+                           <th>Category Name</th>
                            <th>Name</th>
                            <th>Description</th>
                            <th>Price</th>
@@ -41,6 +42,11 @@
                          <tr>
                            <td>{{ $loop->index + 1}}</td>
                            <td>{{ $product->name}}</td>
+                           <td>{{ $product-> relationToTable-> category_name }}</td> 
+                           {{--  [Go to Product.php (model) and see] 
+                                 <td>{{ App\Category::find($product->category_id)->category_name}}</td>
+                                 Same work but 1st part best and 2nd part good --}}
+                           
                            <td>{{ str_limit($product->description, 20)}}</td>
                            <td>{{ $product->price}}</td>
                            <td>{{ $product->quantity}}</td>

@@ -5,8 +5,15 @@
    use App\Product;
    use Image;
    use App\Category;
+   use App\Card;
+   use Carbon\Carbon;
 
 class ProductController extends Controller{
+
+   public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
    function Add_Product(){
       $products=Product::paginate(4);
@@ -52,8 +59,7 @@ class ProductController extends Controller{
             'product_image'=> $fileName
          ]);
       }
-      return back()->with('insert','Insert successfully');
-   
+      return back()->with('insert','Insert successfully');   
    }
 
    function delete_product($product_id){
@@ -68,9 +74,9 @@ class ProductController extends Controller{
    }
 
    function view_product($product_id){
-      // $single_product_info= Product::find($product_id);
       $single_product_info= Product::findOrFail($product_id);
-      $related_products= Product::where('id', '!=', $product_id)->get();
+      // video-8, time: 25:00
+      $related_products= Product::where('id', '!=', $product_id)->where('category_id', $single_product_info->category_id)->get();
       return view('product/View_Product', compact('single_product_info', 'related_products')); 
    }
 
@@ -123,6 +129,35 @@ class ProductController extends Controller{
       // unlink(base_path('public/Full_Project/images/product_images/'.$old_image_name));
 
       // return back()->with('forceDelete', 'Product force delete successfully');
+   }
+   function category_wise_menu($category_id){
+      $products = Product::where('category_id', $category_id)->get();
+      return view('product/category_wise_menu', compact('products'));
+   }
+
+   function add_to_card($product_id){
+      // print_r($_SERVER); all info hare
+      $ip_address = $_SERVER['REMOTE_ADDR'];
+
+      if (Card::where('customer_ip', $ip_address)->where('product_id', $product_id)->exists()) {
+         
+         Card::where('customer_ip', $ip_address)
+            ->where('product_id', $product_id)
+            ->increment('product_quantity');
+
+            // increment('product_quantity', 10);
+            //if u want to increment 10+
+
+      }else{
+         
+         Card::insert([
+            'customer_ip' => $ip_address,
+            'product_id' => $product_id,
+            'created_at' => Carbon::now()
+         ]);
+      }
+
+      return back();
    }
 
 }

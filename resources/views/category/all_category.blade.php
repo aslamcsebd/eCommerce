@@ -18,6 +18,7 @@
                          <tr>
                            <th>SL. No</th>
                            <th>Category Name</th>
+                           <th>Menu Status</th>
                            <th>Created At</th>
                            <th>Action</th>
                          </tr>
@@ -27,6 +28,7 @@
                          <tr>
                            <td>{{ $loop->index + 1}}</td>
                            <td>{{ $category->category_name}}</td>
+                           <td>{{ ($category->menu_status == 1) ? 'Yes':'No'}}</td>
                            <td>
                               {{ $category->created_at->format('d-M-Y  h:i:s A')}}
                               <br>
@@ -35,8 +37,7 @@
                            
                            <td>
                               <div class="btn-group" role="group">
-                                 <a href="{{ url('delete_product')}}/{{$category->id}}" class="btn btn-sm btn-danger">Delete</a>
-                              <a href="{{ url('edit_product')}}/{{$category->id}}" class="btn btn-sm btn-info">Edit</a>
+                                 <a href="{{ url('change_category')}}/{{$category->id}}" class="btn btn-sm btn-danger">Change</a>
                               </div>                           
                            </td>
                          </tr>
@@ -76,7 +77,11 @@
                         @csrf
                         <div class="form-group">
                            <label>Category Name</label>
-                           <input type="text" class="form-control" name="category_name" placeholder="Product Name" value="{{ old('name')}}">
+                           <input type="text" class="form-control" name="category_name" placeholder="Category Name" value="{{ old('name')}}">
+                        </div>
+                        <div class="form-group">
+                           <input type="checkbox" id="menu" name="menu_status" value="1">
+                           <label for="menu">Use as Menu</label>
                         </div>                            
                         <button type="submit" class="btn btn-info">Add Category</button>
                      </form>                 

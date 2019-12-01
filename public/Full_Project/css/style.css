@@ -20,6 +20,19 @@ body {
   font-family: sans-serif;
 }
 
+.shopping_card img{
+   border-radius: 35px;
+   width: 45px;
+   padding : 0px; 
+}
+.shopping_card span{
+   font-size: 18px;
+   color: #fff;
+   border-radius: 35px;
+   background-color: red;
+   padding: 5px;
+}
+
 /* ---- button ---- */
 
 .button {
@@ -152,6 +165,29 @@ body {
 .element-item.diatomic        { background: #00F; background: hsl( 252, 100%, 50%); }
 .element-item.halogen         { background: #F0F; background: hsl( 288, 100%, 50%); }
 .element-item.noble-gas       { background: #F08; background: hsl( 324, 100%, 50%); }
+
+
+/*single sms*/
+.single_sms .message{
+   text-align: justify;
+}
+.single_sms, .table  th, .table td{
+   border-top: none; 
+}
+.tab{
+   padding-left: 70px;
+}
+
+
+.quantity_input{
+   /*background-color: cyan;*/
+   padding: 10px -20px 10px 20px;
+   /*margin: 0px -30px;   */
+}
+.quantity_input input{
+   width: 50px;
+   height: 40px;
+}
 
 .footer {
   height: 50px;   
