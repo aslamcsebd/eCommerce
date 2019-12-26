@@ -2,7 +2,7 @@
    @section('body_part')
       <div class="container-fluid">
          <div class="row justify-content-center">
-            <div class="col-10">
+            <div class="col-12">
                <div class="card mt-4 ">
                    <div class="card-header bg-success text-center">All message</div>
                    <div class="card-body">

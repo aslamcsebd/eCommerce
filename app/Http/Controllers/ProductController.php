@@ -10,14 +10,14 @@
 
 class ProductController extends Controller{
 
-   public function __construct()
-    {
-        $this->middleware('auth');
-    }
+   // public function __construct(){
+   //    $this->middleware('auth');
+   // }
 
    function Add_Product(){
-      $products=Product::paginate(4);
-      $deleted_products = Product::onlyTrashed()->get(); //{{-- withTrashed [same meanin]--}}
+      $products=Product::paginate(3);
+      $deleted_products = Product::onlyTrashed()->paginate(3); 
+      //{{-- withTrashed [same meaning]--}}
       $categories = Category::all();
       return view('product/Add_Product', compact('products', 'deleted_products', 'categories'));   
    }
@@ -28,7 +28,7 @@ class ProductController extends Controller{
       return view('welcome', compact('all_products', 'categories'));   
    }
 
-   function insert_product(Request $request){
+   function insert_product(Request $request) {
     
       $request-> validate([
          'category_id'=> 'required',
@@ -55,9 +55,11 @@ class ProductController extends Controller{
             $fileName=$last_inserted_id.".".$photo_to_upload->getClientOriginalExtension();
             Image::make($photo_to_upload)->resize(400,380)->save(base_path('public/Full_Project/images/product_images/'.$fileName));  
             //Image quality   save(base_path('url'), 50);   this 50% image quality will be save
+         
          Product::find($last_inserted_id)->update([
             'product_image'=> $fileName
          ]);
+         
       }
       return back()->with('insert','Insert successfully');   
    }
@@ -90,7 +92,8 @@ class ProductController extends Controller{
                   Image::make($photo_to_upload)->resize(400,380)->save(base_path('public/Full_Project/images/product_images/'.$fileName));  
                   Product::find($request->product_id)->update([
                      'product_image'=> $fileName
-                  ]);   
+                  ]);
+
             }else{
 
                $old_image_name = Product::find($request->product_id)->product_image;
@@ -121,14 +124,18 @@ class ProductController extends Controller{
    }
 
    function force_Delete($product_id){
-      // Product::onlyTrashed()->where('id', $product_id)->forceDelete();
-      // Same work
-      echo $single_product_info= Product::findOrFail($product_id);
 
-      // Product::onlyTrashed()->find($product_id)->forceDelete();
-      // unlink(base_path('public/Full_Project/images/product_images/'.$old_image_name));
+      $delete_this_file = Product::onlyTrashed()->find($product_id)->product_image;
+      
+      if ($delete_this_file == 'product_default_image.jpg') {
+         Product::onlyTrashed()->find($product_id)->forceDelete();
 
-      // return back()->with('forceDelete', 'Product force delete successfully');
+      }else{
+         Product::onlyTrashed()->find($product_id)->forceDelete();
+         unlink(base_path('public/Full_Project/images/product_images/'.$delete_this_file));
+      }
+
+      return back()->with('forceDelete', 'Product force delete successfully');
    }
    function category_wise_menu($category_id){
       $products = Product::where('category_id', $category_id)->get();

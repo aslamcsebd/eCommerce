@@ -21,15 +21,15 @@
    
       <div class="row">
          @foreach($products as $product)
-            <div class="col-lg-3 col-md-4 col-sm-6 col-sm-12" style="margin: 5px 0px; width: 60%;">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-sm-12 category_wise">
                <div class="card">
                   <div class="card-header bg-light">Product Name: {{ $product->name }}</div>
-                     <div class="card-body" style="border: 1px solid cyan;">
+                     <div class="card-body category_wise_body">
                         <a href="{{ url('view_product')}}/{{$product->id}}">
                            <img src="{{ asset('Full_Project/images/product_images') }}/{{ $product->product_image }}" class="img-thumbnail">
                         </a>
                         <h4>Price: ${{ $product->price }}</h4>
-                        <a href="{{ url('view_product')}}/{{$product->id}}" class="btn btn-info btn-sm">Add To Card</a>
+                        <a href="{{ url('view_product')}}/{{$product->id}}" class="btn btn-info btn-sm">Add To Cart</a>
                      </div>
                </div>
             </div>

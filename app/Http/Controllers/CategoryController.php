@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use Carbon\Carbon;
 
-class CategoryController extends Controller
-{
+class CategoryController extends Controller{
 
     function add_category(){
 

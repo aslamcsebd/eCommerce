@@ -33,7 +33,7 @@ Route::post('contact_insert', 'HomeController@contact_insert');
 Route::get('contact_sms_view', 'HomeController@contact_sms_view');
 Route::get('view_sms/{sms_id}', 'HomeController@view_sms');
 Route::get('delete_sms/{sms_id}', 'HomeController@delete_sms');
-Route::get('card', 'HomeController@card');
+Route::get('cart', 'HomeController@card');
 Route::get('card_delete/{card_no}', 'HomeController@card_delete');
 Route::get('delete_all_cart', 'HomeController@delete_all_cart');
 

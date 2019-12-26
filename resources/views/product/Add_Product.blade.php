@@ -2,7 +2,7 @@
 
    @section('body_part')
       <div class="container-fluid">
-      	<div class="row">
+      	<div class="row mt-3 mb-3">
             <div class="col-8">
                <div class="card mb-3 ">
                    <div class="card-header bg-success">Product list</div>
@@ -40,7 +40,7 @@
                        <tbody>
                         @forelse($products as $product)  {{-- foreach don't have @empty option --}}
                          <tr>
-                           <td>{{ $loop->index + 1}}</td>
+                           <td>{{ $loop->index + $products->firstItem() }}</td>
                            <td>{{ $product->name}}</td>
                            <td>{{ $product-> relationToTable-> category_name }}</td> 
                            {{--  [Go to Product.php (model) and see] 
@@ -63,7 +63,7 @@
                          </tr>
                          @empty
                            <tr class="text-center text-danger">
-                              <td colspan="8">No data found...</td>
+                              <td colspan="9">No data found...</td>
                            </tr>
                          @endforelse
                                               
@@ -99,7 +99,7 @@
                        <tbody>
                         @forelse($deleted_products as $deleted_product)  {{-- foreach don't have @empty option --}}
                          <tr>
-                           <td>{{ $loop->index + 1}}</td>
+                           <td>{{ $loop->index + $deleted_products->firstItem() }}</td>
                            <td>{{ $deleted_product->name}}</td>
                            <td>{{ str_limit($deleted_product->description, 20)}}</td>
                            <td>{{ $deleted_product->price}}</td>
@@ -123,7 +123,7 @@
                                               
                        </tbody>
                      </table>
-                     {{-- {{ $deleted_products->links() }} --}}
+                     {{ $deleted_products->links() }}
                    </div>
                </div>
            </div>
@@ -182,7 +182,7 @@
                            <label>Product Image</label>
                            <input type="file" class="form-control" name="product_image">
                         </div>    
-                        <button type="submit" class="btn btn-info">Add product</button>                    							
+                        <button type="submit" class="btn btn-info">Add product</button>
    						</form>						
    					</div>					
       			</div>				

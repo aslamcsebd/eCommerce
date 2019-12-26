@@ -23,7 +23,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                <ul class="navbar-nav ml-auto">
                   <li class="nav-item active">
-                     <a class="nav-link" href="{{ url('Add_Product') }}">Add Product<span class="sr-only">(current)</span></a>
+                     <a class="nav-link btn btn-sm btn-success" href="{{ url('Add_Product') }}">Add Product<span class="sr-only">(current)</span></a>
                   </li>
 
                   <li class="nav-item">
@@ -78,7 +78,7 @@
                             </li>
                         @endguest
                         <li class="nav-item shopping_card">
-                           <a class="nav-link" href="{{ url('card') }}">
+                           <a class="nav-link" href="{{ url('cart') }}">
                               {{-- <img src="{{ asset('Full_Project/images/card.png') }}"> --}}
                               <span>
                                  {{ App\Card::where('customer_ip', $_SERVER['REMOTE_ADDR'])
@@ -102,8 +102,10 @@
 
       <!-- Footer -->
       <footer class="footer">
-         <div class="text-center py-2">© 2019 Copyright:
+         <div class="text-center py-2">© <?= date('Y'); ?> Copyright:
             <a href="https://css-tricks.com/couple-takes-sticky-footer/" target="_blank"> Footer Design Click here</a>
+            <br>
+            <a href="https://www.facebook.com/aslam.cse.ctg" target="_blank">Facebook Link</a>
          </div>    
       </footer>
       <!-- Footer -->

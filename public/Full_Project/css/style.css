@@ -20,6 +20,34 @@ body {
   font-family: sans-serif;
 }
 
+/*welcome*/
+.welcomeProduct{
+   margin: 5px 0px; 
+   width: 60%;
+}
+
+.welcomeProduct .card-body{
+   border: 1px solid cyan;
+}
+
+/*category_wise*/
+.category_wise{
+    margin: 5px 0px; 
+    width: 60%;
+}
+.category_wise_body{
+   border: 1px solid cyan;
+}
+
+/*view_product*/
+.view_product{
+    margin: 3px; 
+    padding: 5px; 
+    border: 1px solid cyan; 
+    border-radius: 20px;
+}
+
+
 .shopping_card img{
    border-radius: 35px;
    width: 45px;
@@ -28,9 +56,9 @@ body {
 .shopping_card span{
    font-size: 18px;
    color: #fff;
-   border-radius: 35px;
+   /*border-radius: 35px;*/
    background-color: red;
-   padding: 5px;
+   padding: 5px 10px;
 }
 
 /* ---- button ---- */
@@ -108,7 +136,7 @@ body {
 
 .element-item {
   position: relative;
-  float: left;
+  float: right;
   width: 100px;
   height: 100px;
   margin: 5px;
@@ -189,7 +217,23 @@ body {
    height: 40px;
 }
 
+
+
+
+/*welcome page*/
+
+.element-item {
+   margin: 2px; 
+   padding: 3px; 
+   border: 1px solid cyan; 
+   border-radius: 10px;
+}
+.element-item img {
+   border-radius: 15px;
+}
+
+
 .footer {
-  height: 50px;   
+  height: 70px;   
   background-color: cyan;
 }
