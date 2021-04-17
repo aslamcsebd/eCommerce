@@ -217,23 +217,10 @@ body {
    height: 40px;
 }
 
-
-
-
-/*welcome page*/
-
-.element-item {
-   margin: 2px; 
-   padding: 3px; 
-   border: 1px solid cyan; 
-   border-radius: 10px;
-}
-.element-item img {
-   border-radius: 15px;
-}
-
-
 .footer {
-  height: 70px;   
-  background-color: cyan;
+  height: 40px;   
+  background-color: #636e72;
+}
+.footer div, .footer a{
+  color: #fff;
 }

@@ -2,41 +2,39 @@
 <html lang="en">
    <head>
       <meta charset="ISO-8859-1">
-      <title>eCommerce</title>
+      <title>eCommerce</title>     
+       <link rel = "icon" href="{{ asset('Full_Project/images/shopping.svg') }}" type ="image/x-icon">
       <script src="{{ asset('js/app.js') }}" defer></script>
       {{-- <meta http-equiv="refresh" content="5" /> --}}
       <script src="{{ asset('Full_Project/js/jquery.min.js')}}"></script>
       <script src="{{ asset('Full_Project/js/isotope.pkgd.min.js')}}"></script>
       <link rel="stylesheet" href="{{ asset('Full_Project/css/bootstrap.min.css') }}">
       <link rel="stylesheet" href="{{ asset('Full_Project/css/style.css') }}">
-
    </head>
-
    <body>
 
       <!-------------- navbar  -------------->
       <nav class="navbar navbar-expand-lg navbar-light bg-info">
-         <a class="navbar-brand" href="#">eCommerce</a>
+         <a class="navbar-brand text-light" href="{{ url('/') }}">eCommerce</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                <ul class="navbar-nav ml-auto">
                   <li class="nav-item active">
-                     <a class="nav-link btn btn-sm btn-success" href="{{ url('Add_Product') }}">Add Product<span class="sr-only">(current)</span></a>
-                  </li>
-
-                  <li class="nav-item">
-                     <a class="nav-link" href="{{ url('add_category') }}">Add Category</a>
+                     <a class="nav-link btn btn-sm text-light" href="{{ url('Add_Product') }}">Add Product<span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="{{ url('all_product') }}">View Product</a>
+                     <a class="nav-link text-light" href="{{ url('add_category') }}">Add Category</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="{{ url('contact') }}">Contact</a>
+                     <a class="nav-link text-light" href="{{ url('all_product') }}">View Product</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link text-light" href="{{ url('contact') }}">Contact</a>
                   </li>             
                   <li class="nav-item">
-                     <a class="nav-link" href="{{ url('contact_sms_view') }}">View sms</a>
+                     <a class="nav-link text-light" href="{{ url('contact_sms_view') }}">View sms</a>
                   </li>                  
                </ul>
             </div>
@@ -51,16 +49,16 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link text-light" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -90,7 +88,6 @@
                         </li>
                     </ul>
                 </div>
-
       </nav>
 
       <div class="wrapper">
@@ -103,9 +100,7 @@
       <!-- Footer -->
       <footer class="footer">
          <div class="text-center py-2">© <?= date('Y'); ?> Copyright:
-            <a href="https://css-tricks.com/couple-takes-sticky-footer/" target="_blank"> Footer Design Click here</a>
-            <br>
-            <a href="https://www.facebook.com/aslam.cse.ctg" target="_blank">Facebook Link</a>
+            <a href="https://css-tricks.com/couple-takes-sticky-footer/" target="_blank"> Footer design from here</a>
          </div>    
       </footer>
       <!-- Footer -->
@@ -116,67 +111,57 @@
             $('#search').DataTable();
          } );
       </script>
-
       <script type="text/javascript">
          // external js: isotope.pkgd.js
-
-// init Isotope
-var $grid = $('.grid').isotope({
-  itemSelector: '.element-item',
-  layoutMode: 'fitRows',
-  getSortData: {
-    name: '.name',
-    symbol: '.symbol',
-    number: '.number parseInt',
-    category: '[data-category]',
-    weight: function( itemElem ) {
-      var weight = $( itemElem ).find('.weight').text();
-      return parseFloat( weight.replace( /[\(\)]/g, '') );
-    }
-  }
-});
-
-// filter functions
-var filterFns = {
-  // show if number is greater than 50
-  numberGreaterThan50: function() {
-    var number = $(this).find('.number').text();
-    return parseInt( number, 10 ) > 50;
-  },
-  // show if name ends with -ium
-  ium: function() {
-    var name = $(this).find('.name').text();
-    return name.match( /ium$/ );
-  }
-};
-
-// bind filter button click
-$('#filters').on( 'click', 'button', function() {
-  var filterValue = $( this ).attr('data-filter');
-  // use filterFn if matches value
-  filterValue = filterFns[ filterValue ] || filterValue;
-  $grid.isotope({ filter: filterValue });
-});
-
-// bind sort button click
-$('#sorts').on( 'click', 'button', function() {
-  var sortByValue = $(this).attr('data-sort-by');
-  $grid.isotope({ sortBy: sortByValue });
-});
-
-// change is-checked class on buttons
-$('.button-group').each( function( i, buttonGroup ) {
-  var $buttonGroup = $( buttonGroup );
-  $buttonGroup.on( 'click', 'button', function() {
-    $buttonGroup.find('.is-checked').removeClass('is-checked');
-    $( this ).addClass('is-checked');
-  });
-});
-  
-
+         // init Isotope
+         var $grid = $('.grid').isotope({
+           itemSelector: '.element-item',
+           layoutMode: 'fitRows',
+           getSortData: {
+             name: '.name',
+             symbol: '.symbol',
+             number: '.number parseInt',
+             category: '[data-category]',
+             weight: function( itemElem ) {
+               var weight = $( itemElem ).find('.weight').text();
+               return parseFloat( weight.replace( /[\(\)]/g, '') );
+             }
+           }
+         });
+         // filter functions
+         var filterFns = {
+           // show if number is greater than 50
+           numberGreaterThan50: function() {
+             var number = $(this).find('.number').text();
+             return parseInt( number, 10 ) > 50;
+           },
+           // show if name ends with -ium
+           ium: function() {
+             var name = $(this).find('.name').text();
+             return name.match( /ium$/ );
+           }
+         };
+         // bind filter button click
+         $('#filters').on( 'click', 'button', function() {
+           var filterValue = $( this ).attr('data-filter');
+           // use filterFn if matches value
+           filterValue = filterFns[ filterValue ] || filterValue;
+           $grid.isotope({ filter: filterValue });
+         });
+         // bind sort button click
+         $('#sorts').on( 'click', 'button', function() {
+           var sortByValue = $(this).attr('data-sort-by');
+           $grid.isotope({ sortBy: sortByValue });
+         });
+         // change is-checked class on buttons
+         $('.button-group').each( function( i, buttonGroup ) {
+           var $buttonGroup = $( buttonGroup );
+           $buttonGroup.on( 'click', 'button', function() {
+             $buttonGroup.find('.is-checked').removeClass('is-checked');
+             $( this ).addClass('is-checked');
+           });
+         });  
       </script>
-
-
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 {{-- <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script> --}}

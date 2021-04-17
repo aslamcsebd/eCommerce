@@ -5,7 +5,7 @@
          <div class="row mt-3">
             <div class="col-8">
                <div class="card mb-3 ">
-                   <div class="card-header bg-success">Category List</div>
+                   <div class="card-header bg-success text-light text-center">Category List</div>
 
                    <div class="card-body">
                        @if (session('delete'))
@@ -55,7 +55,7 @@
            </div>
             <div class="col-4 offset-">
                <div class="card">
-                  <div class="card-header bg-success">
+                  <div class="card-header bg-success text-light text-center">
                      Add Category
                   </div>               
                   <div class="card-body">

@@ -6,9 +6,7 @@
          <div class="row justify-content-center">
             <div class="col-8">
                <div class="card">
-                  <div class="card-header">
-                    <h4 class="text-center">Contact Now</h4> 
-                  </div>               
+                  <div class="card-header badge-success text-center">Contact Now</div>               
                   <div class="card-body">
                      @if (session('status'))
                         <div class="alert alert-success" role="alert">

@@ -5,7 +5,7 @@
       <div class="row">
          <div class="col-6 offset-3">
             <div class="card">
-               <div class="card-header bg-success">
+               <div class="card-header bg-success text-light text-center">
                   Add Product
                </div>               
                <div class="card-body">
